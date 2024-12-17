@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container mt-3">
+<div>
   <h2>Se connecter:</h2>
   <form action="/action_page.php">
     <div class="mb-3 mt-3">

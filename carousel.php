@@ -9,7 +9,7 @@
 </head>
 <body style="background-color:rgb(52, 108, 190);">
 
-  <div class="container-fluid mt-3">
+  <div class="container-fluid sm-3">
     <h3 class="text-center">Dernières acquisitions:</h3>
   </div>  
 
@@ -21,7 +21,7 @@
   </div>
   <?php
   require_once('connexion-mysql.php');
-  $stmt = $connexion -> prepare("SELECT * FROM livre order by dateajout asc limit 3");
+  $stmt = $connexion -> prepare("SELECT * FROM livre order by dateajout desc limit 3");
   $stmt->setFetchMode(PDO::FETCH_OBJ);
   $stmt->execute();
   $enregistrement = $stmt->fetch();
