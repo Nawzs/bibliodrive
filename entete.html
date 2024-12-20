@@ -18,7 +18,7 @@
   <div class="container-fluid">
     <!--<a class="navbar-brand" href="javascript:void(0)"><img src="../Image/biblio.jpg" >
     </a>-->
-    <button class="navbar-toggler" type="submit" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+    <button class="navbar-toggler" type="submit" name="recherche" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
@@ -27,9 +27,9 @@
             <h5> <p class="text-white"> Recherche dans le catalogue:</h5>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Nom de l'auteur :">
-        <button class="btn btn-primary" type="button">Rechercher</button>
+      <form class="d-flex" action="lister-livres.php" method="GET">
+        <input class="form-control me-3" type="text" name="recherche" placeholder="Saisissez le nom d'un auteur">
+        <button class="btn btn-primary" type="submit">Rechercher</button>
       </form>
     </div>
   </div>

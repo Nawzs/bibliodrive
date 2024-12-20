@@ -21,7 +21,15 @@ while($utilisateur = $stmt->fetch())
 <br>
 <div class = row>
 <div class = "col-sm-9">
-<?php include("carousel.php"); ?>
+
+ 
+<?php
+// si btnRechercher est set 
+//alors include lister les bouquins.php
+//sinon 
+include("carousel.php"); 
+?>
+
 </div>
 <br>
 <br>
