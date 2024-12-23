@@ -1,9 +1,9 @@
 <?php
-require_once('connexion-mysql.php');
-$stmt = $connexion -> prepare("SELECT * FROM livre order by dateajout desc limit 3");
-$stmt->setFetchMode(PDO::FETCH_OBJ);
-$stmt->execute();
-$livres = $stmt->fetchAll();
+  require_once('connexion-mysql.php');
+  $stmt = $connexion -> prepare("SELECT * FROM livre order by dateajout desc limit 3");
+  $stmt->setFetchMode(PDO::FETCH_OBJ);
+  $stmt->execute();
+  $livres = $stmt->fetchAll();
 ?>
 
 <div class="container-fluid sm-3">

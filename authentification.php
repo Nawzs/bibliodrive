@@ -1,28 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Formulaire</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
+<?php
+  session_start();
+    if (array_key_exists("email", $_POST) && array_key_exists("pwd", $_POST)) {
+    require_once("connexion-mysql.php");
+    $user = $connexion->prepare("SELECT mel, motdepasse FROM utilisateur WHERE mel = :email");
+    $user->setFetchMode(PDO::FETCH_OBJ);
+    $user->bindValue(":email", $_POST["email"]);
+    $user->execute();
+
+    if ($user->rowCount() > 0) {
+        $resultat = $user->fetch();
+        if (password_verify($_POST["pwd"], $resultat->motdepasse)) {
+            session_start();
+            $_SESSION["email"] = $_POST["email"];
+            header("Location: " . htmlspecialchars($_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"]));
+        } 
+        else {
+            echo "Identifiants non valide";
+        }
+    } 
+    else {
+        echo "Identifiants non valide";
+    }
+}
+?>
 
 <div>
-  <h2>Se connecter:</h2>
-  <form action="/action_page.php">
+  
+  <?php if (array_key_exists("email", $_SESSION)) : ?>
+    <p>Connecté</p>
+    <form action="deconnexion.php" method="POST">
+      <button type="submit" class="btn btn-primary">Déconnexion</button> 
+    </form> 
+  <?php else : ?>
+    <h2>Se connecter:</h2>
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"]);?>" method="POST">
     <div class="mb-3 mt-3">
       <label for="email">Identifiant:</label>
       <input type="email" class="form-control" id="email" placeholder="Entrer votre mail" name="email">
     </div>
     <div class="mb-3">
       <label for="pwd">Mot de passe:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Entrer le mot de passe" name="pswd">
+      <input type="password" class="form-control" id="pwd" placeholder="Entrer le mot de passe" name="pwd">
     </div>
     <button type="submit" class="btn btn-primary">Connexion</button>
   </form>
-</div>
+  <?php endif ?>
 
-</body>
-</html>
+</div>
