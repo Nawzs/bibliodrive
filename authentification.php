@@ -1,5 +1,4 @@
 <?php
-  session_start();
     if (array_key_exists("email", $_POST) && array_key_exists("pwd", $_POST)) {
     require_once("connexion-mysql.php");
     $user = $connexion->prepare("SELECT mel, motdepasse FROM utilisateur WHERE mel = :email");
@@ -26,11 +25,8 @@
 
 <div>
   
-  <?php if (array_key_exists("email", $_SESSION)) : ?>
-    <p>Connecté</p>
-    <form action="deconnexion.php" method="POST">
-      <button type="submit" class="btn btn-primary">Déconnexion</button> 
-    </form> 
+  <?php if (array_key_exists("email", $_SESSION)) : ?>  
+    <?php include("utilisateur.php");?>
   <?php else : ?>
     <h2>Se connecter:</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"]);?>" method="POST">

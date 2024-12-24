@@ -1,5 +1,6 @@
 <?php
     include("entete.html");
+    session_start();
 ?> 
 
 <div class= 'row'>

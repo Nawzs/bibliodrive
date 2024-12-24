@@ -1,6 +1,7 @@
 <br>
 <?php
   include("entete.html"); 
+  session_start();
 ?>
 
 <?php
