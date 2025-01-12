@@ -8,7 +8,7 @@
 
     if ($user->rowCount() > 0) {
         $resultat = $user->fetch();
-        if (password_verify($_POST["pwd"], $resultat->motdepasse)) {
+        if ($_POST ["pwd"] == $resultat->motdepasse) {
             session_start();
             $_SESSION["email"] = $_POST["email"];
             header("Location: " . htmlspecialchars($_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"]));
