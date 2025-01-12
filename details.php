@@ -33,16 +33,25 @@ session_start();
                     <p>ISBN 13 : <?=$resultat->isbn13?></p>
                     <p>Résumé du livre:</p>
                     <p><?=$resultat->detail?></p>
-                    <?php if (array_key_exists("email", $_SESSION) && empty($resultat->dateretour) && empty($resultat->dateemprunt)) : ?>
-                        <a href="emprunter.php?nolivre=<?=$_GET["nolivre"]?>">Emprunter</a>
-                        <p> Disponible </p>
-                    <?php else : ?> 
-                        <p> Indisponible </p>
-                    <?php endif?>
-                </div>
-                <img src="./image/covers/<?=$resultat->photo?>" alt="<?=$resultat->titre?>" class="col-sm-3">                    
-            </div>  
-        <?php endif ?>
+                    
+                    <?php if (array_key_exists("email", $_SESSION)) : ?>
+                <?php if (empty($resultat->dateretour) && empty($resultat->dateemprunt)) : ?>
+                    <form action="panier.php" method="POST">
+                        <input type="hidden" name="nolivre" value="<?=$resultat->nolivre?>">
+                        <input type="hidden" name="titre" value="<?=$resultat->titre?>">
+                        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                    </form>
+                    <p>Disponible</p>
+                <?php else : ?>
+                    <p>Indisponible</p>
+                <?php endif ?>
+            <?php else : ?>
+                <p>Veuillez vous connecter pour ajouter au panier.</p>
+            <?php endif ?>
+        </div>
+        <img src="./image/covers/<?=$resultat->photo?>" alt="<?=$resultat->titre?>" class="col-sm-3">                    
+    </div>
+<?php endif ?>
 
     </div> 
 

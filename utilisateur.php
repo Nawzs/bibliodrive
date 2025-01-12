@@ -12,13 +12,20 @@
 <div>
     <?php if ($resultat->profil == "admin") : ?>
         <h2>Profil administrateur</h2>
+        <a href="gestion-livres.php">Gérer les livres</a><br>
+        <a href="gestion-membres.php">Gérer les membres</a>     
     <?php endif?>
     <p>Profil de: <?=$resultat->prenom?> <?=$resultat->nom?></p>
     <p><?=$resultat->mel?></p>
     <?php if ($resultat->profil != "admin") : ?>
         <p><?=$resultat->adresse?>, <?=$resultat->ville?>, <?=$resultat->codepostal?></p>
-    <?php endif?>
+        <?php echo "<p>Bienvenue !</p>";
+           ?> 
+    <?php endif
+    ?>
     <form action="deconnexion.php" method="POST">
-      <button type="submit" class="btn btn-primary">Déconnexion</button> 
+      <button type="submit" class="btn btn-primary">Déconnexion</button><br>
+    
+    
     </form>
 </div>
