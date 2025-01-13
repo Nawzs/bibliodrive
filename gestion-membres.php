@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = $_POST["motdepasse"];
     $adresse = $_POST["adresse"];
     $ville = $_POST["ville"];
-    $codepostal = $_POST["codepsotal"];
+    $codepostal = $_POST["codepostal"];
 
     $stmt = $connexion->prepare("INSERT INTO utilisateur (nom, prenom, mel, motdepasse, adresse, ville, codepostal) VALUES (:nom, :prenom, :email, :motdepasse, :adresse, :ville, :codepostal)");
     $stmt->bindValue(":nom", $nom);
