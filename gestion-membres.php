@@ -26,14 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prenom = $_POST["prenom"];
     $email = $_POST["email"];
     $motdepasse = $_POST["motdepasse"];
-    $profil = $_POST["profil"];
+    $adresse = $_POST["adresse"];
+    $ville = $_POST["ville"];
+    $codepostal = $_POST["codepsotal"];
 
-    $stmt = $connexion->prepare("INSERT INTO utilisateur (nom, prenom, mel, motdepasse, profil) VALUES (:nom, :prenom, :email, :motdepasse, :profil)");
+    $stmt = $connexion->prepare("INSERT INTO utilisateur (nom, prenom, mel, motdepasse, adresse, ville, codepostal) VALUES (:nom, :prenom, :email, :motdepasse, :adresse, :ville, :codepostal)");
     $stmt->bindValue(":nom", $nom);
     $stmt->bindValue(":prenom", $prenom);
     $stmt->bindValue(":email", $email);
     $stmt->bindValue(":motdepasse", $motdepasse);
-    $stmt->bindValue(":profil", $profil);
+    $stmt->bindValue(":adresse", $adresse);
+    $stmt->bindValue(":ville", $ville);
+    $stmt->bindValue(":codepostal", $codepostal);
     $stmt->execute();
 
     echo "Membre ajouté avec succès.";
@@ -54,11 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <label for="motdepasse">Mot de passe :</label>
     <input type="password" id="motdepasse" name="motdepasse" required>
     <br>
-    <label for="profil">Profil (user/admin) :</label>
-    <select id="profil" name="profil">
-        <option value="user">Utilisateur</option>
-        <option value="admin">Administrateur</option>
-    </select>
-    <br><br>
+    <label for="adresse">Adresse :</label>
+    <input type="text" id="adresse" name="adresse" required>
+    <br>
+    <label for="ville">Ville :</label>
+    <input type="text" id="ville" name="ville" required>
+    <br>
+    <label for="codepostal">Code postal :</label>
+    <input type="text" id="codepostal" name="codepostal" required>
+    <br>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>

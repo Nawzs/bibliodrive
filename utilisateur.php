@@ -13,7 +13,8 @@
     <?php if ($resultat->profil == "admin") : ?>
         <h2>Profil administrateur</h2>
         <a href="gestion-livres.php">Gérer les livres</a><br>
-        <a href="gestion-membres.php">Gérer les membres</a>     
+        <a href="gestion-membres.php">Gérer les membres</a><br>
+        <a href="gestion-auteur.php">Gérer les auteurs</a>      
     <?php endif?>
     <p>Profil de: <?=$resultat->prenom?> <?=$resultat->nom?></p>
     <p><?=$resultat->mel?></p>

@@ -24,7 +24,7 @@ if (isset($_GET["action"]) && $_GET["action"] === "supprimer" && isset($_GET["in
     $index = $_GET["index"];
     if (isset($_SESSION["panier"][$index])) {
         unset($_SESSION["panier"][$index]);
-        $_SESSION["panier"] = array_values($_SESSION["panier"]); // Réindexation
+        $_SESSION["panier"] = array_values($_SESSION["panier"]); 
     }
 
     header("Location: panier.php");
@@ -47,7 +47,7 @@ if (isset($_GET["action"]) && $_GET["action"] === "supprimer" && isset($_GET["in
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th>Titre</th>
                         <th>Action</th>
                     </tr>
